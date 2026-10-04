@@ -1,0 +1,276 @@
+.LadderEditor {
+  // A settings Form-group sizes to its content, which made each row only as
+  // wide as its own text and left the ranges out of line.
+  width: 100%;
+  max-width: 720px;
+}
+
+.LadderEditor-rungs {
+  list-style: none;
+  margin: 12px 0;
+  padding: 0;
+  width: 100%;
+}
+
+.LadderEditor-rung + .LadderEditor-rung {
+  margin-top: 4px;
+}
+
+.LadderEditor-rungButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--control-bg);
+  border-radius: var(--border-radius);
+  background: var(--body-bg);
+  color: var(--text-color);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--control-bg);
+  }
+}
+
+.LadderEditor-name {
+  font-weight: bold;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.LadderEditor-range {
+  min-width: 110px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.LadderEditor-members {
+  min-width: 96px;
+  text-align: right;
+  color: var(--muted-color);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.LadderEditor-tag {
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 11px;
+  background: var(--control-bg);
+  color: var(--control-color);
+  white-space: nowrap;
+}
+
+.LadderEditor-flag,
+.LadderEditor-edit {
+  color: var(--muted-color);
+}
+
+.LadderEditor-rungButton:hover .LadderEditor-edit {
+  color: var(--text-color);
+}
+
+.LadderEditor-empty {
+  margin: 12px 0;
+  color: var(--muted-color);
+}
+
+.LadderEditor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.LadderEditor-progress {
+  max-width: 720px;
+  margin-top: 12px;
+  font-size: 13px;
+
+  &--failed {
+    color: var(--validation-error-color);
+  }
+}
+
+.LadderEditor-bar {
+  height: 6px;
+  margin-bottom: 6px;
+  border-radius: 3px;
+  background: var(--control-bg);
+  overflow: hidden;
+}
+
+.LadderEditor-barFill {
+  height: 100%;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.LadderExempt-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+.LadderRungModal-row {
+  display: flex;
+  gap: 12px;
+
+  > .Form-group {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.LadderRungModal-threshold {
+  flex: 0 0 130px !important;
+}
+
+.LadderRungModal-help {
+  margin: -8px 0 16px;
+}
+
+.LadderRungModal-previewBody {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.LadderRungModal-delete {
+  margin-left: auto;
+}
+
+.LadderRungModal .Form-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.LadderEditor-preview {
+  margin-top: 24px;
+
+  .LadderBanner {
+    margin: 10px 0 0;
+  }
+}
+
+// The admin page is wider than the rung list; the preview may use all of it.
+.LadderEditor:has(.LadderEditor-preview) {
+  max-width: none;
+
+  .LadderEditor-rungs,
+  .LadderEditor-progress {
+    max-width: 720px;
+  }
+}
+
+.LadderRungModal-imageRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.LadderRungModal-imageThumb {
+  flex: 0 0 60px;
+  height: 100px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--ladder-color);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &--icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+  }
+}
+
+.LadderRungModal-imageActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+
+  // The real file input is invisible; the Button label around it is the
+  // control, so keyboard and click both open the picker.
+  label.Button {
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+.LadderRungModal-file {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+// Posts or Leaderboard points: a segmented switch, both options in view.
+.LadderEditor-metric {
+  margin: 12px 0 16px;
+
+  &Label {
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  &Choice {
+    display: inline-flex;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 8px;
+    background: var(--control-bg);
+    border: 1px solid var(--control-bg-shaded, var(--control-bg));
+  }
+
+  &Option {
+    padding: 6px 14px;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--muted-color);
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover:not([disabled]) { color: var(--text-color); }
+
+    &.is-active {
+      background: var(--body-bg);
+      color: var(--text-color);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    &[disabled] { cursor: default; opacity: 0.6; }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 1px;
+    }
+  }
+
+  .helpText { margin-top: 8px; }
+
+  &Switched {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: var(--control-bg);
+    color: var(--text-color);
+  }
+}
