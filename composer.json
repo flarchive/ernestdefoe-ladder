@@ -1,0 +1,70 @@
+{
+    "name": "ernestdefoe/ladder",
+    "description": "Post-count ranks for Flarum. Members climb a ladder of groups, and hold exactly one rung at a time.",
+    "keywords": [
+        "flarum",
+        "flarum-extension",
+        "ranks",
+        "groups",
+        "post count",
+        "gamification"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ernest Defoe",
+            "email": "ernestdefoe@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/ernestdefoe/ladder/issues",
+        "source": "https://github.com/ernestdefoe/ladder",
+        "forum": "https://discuss.flarum.org/d/39974-ladder"
+    },
+    "require": {
+        "php": "^8.3",
+        "flarum/core": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ernestdefoe\\Ladder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ernestdefoe\\Ladder\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Ladder",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-stairs",
+                "backgroundColor": "#7c3aed",
+                "color": "#fff"
+            }
+        }
+    },
+    "require-dev": {
+        "flarum/phpstan": "^2.0",
+        "flarum/testing": "^2.0"
+    },
+    "scripts": {
+        "test": [
+            "@test:integration"
+        ],
+        "test:integration": "phpunit -c tests/phpunit.integration.xml",
+        "test:setup": "@php tests/integration/setup.php",
+        "analyse:phpstan": "phpstan analyse"
+    },
+    "scripts-descriptions": {
+        "test": "Runs all tests.",
+        "test:integration": "Runs all integration tests.",
+        "test:setup": "Sets up a database for use with integration tests. Execute this only once.",
+        "analyse:phpstan": "Run static analysis"
+    },
+    "minimum-stability": "beta",
+    "prefer-stable": true
+}
